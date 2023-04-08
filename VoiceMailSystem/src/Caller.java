@@ -9,6 +9,7 @@ public class Caller {
 	private int ext;
 	private String greeting;
 	
+	// Allows creation of a new caller setting the name, password and extention, and gives a generic greeting for that caller
 	public Caller(String name, String pw, int ext) {
 		this.setOwnerName(name);
 		this.password = pw;
