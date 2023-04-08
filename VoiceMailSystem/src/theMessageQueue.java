@@ -7,6 +7,8 @@ public class theMessageQueue {
 	static int currentc1 = 0;
 	static int currentc2 = 0;
 	
+	// Allows the caller accociated with these new messages to view them if there are any, and asks if they want to save that message
+	// otherwise the message is deleted
 	public static void viewNewMessagec1() {
 		if(mailBox.newMessageQueuec1.isEmpty()) {
 			System.out.println("\sYou do not currently have any new messages!\n\n\sTaking you back to previous menu.\n");
@@ -23,11 +25,13 @@ public class theMessageQueue {
 			if(!c.equalsIgnoreCase("h")) {
 				int choose = Integer.valueOf(c);
 				switch(choose){
+					// Case 1: Saves the message to the saved message list and attempts to get the next newest message
 					case 1:
 						System.out.println("\sMessage saved!\n");
 						mailBox.saveMessagec1(newMessage);
 						viewNewMessagec1();
 						break;
+					// Case 2: Tells the user that they deleted the message from their inbox and attempts to get the next newest message 
 					case 2:
 						System.out.println("\sMessage deleted!\n");
 						viewNewMessagec1();
@@ -38,6 +42,8 @@ public class theMessageQueue {
 			}
 		}
 	}
+	// Allows the caller accociated with these saved messages to view them if there are any, and asks if they want to delete that message
+	// or move on to the other saved messages
 	public static void viewSavedMessagesc1() {
 		if(mailBox.savedMessageQueuec1.isEmpty()) {
 			System.out.println("\sYou do not have any saved messages!\n\n\sTaking you back to previous menu.\n");
@@ -54,11 +60,13 @@ public class theMessageQueue {
 				if(!c.equalsIgnoreCase("h")) {
 					int choose = Integer.valueOf(c);
 					switch(choose){
+						// Case 1: Since this is the last message in the list it takes the caller to the previous menu
 						case 1:
 							System.out.println("\sYou do not have any more saved messages!\n\n\sTaking you back to previous menu.\n");
 							currentc1 = 0;
 							theMailbox.mailboxMenu();
 							break;
+						// Case 2: Deletes the last messgage and takes the caller to the previous menu
 						case 2:
 							System.out.println("\sMessage deleted!\n");
 							mailBox.deleteSavedMessagec1();
@@ -81,9 +89,11 @@ public class theMessageQueue {
 				if(!c.equalsIgnoreCase("h")) {
 					int choose = Integer.valueOf(c);
 					switch(choose){
+						// Case 1: Goes to the next saved message
 						case 1:
 							viewSavedMessagesc1();
 							break;
+						// Case 2: Deletes that saved message
 						case 2:
 							System.out.println("\sMessage deleted!\n");
 							int q1 = currentc1; 
@@ -104,6 +114,8 @@ public class theMessageQueue {
 			}
 		}
 	}
+	// Allows the caller accociated with these new messages to view them if there are any, and asks if they want to save that message
+	// otherwise the message is deleted
 	public static void viewNewMessagec2() {
 		if(mailBox.newMessageQueuec2.isEmpty()) {
 			System.out.println("\sYou do not currently have any new messages!\n\n\sTaking you back to previous menu.\n");
@@ -120,11 +132,13 @@ public class theMessageQueue {
 			if(!c.equalsIgnoreCase("h")) {
 				int choose = Integer.valueOf(c);
 				switch(choose){
+					// Case 1: Saves the message to the saved message list and attempts to get the next newest message
 					case 1:
 						System.out.println("\sMessage saved!\n");
 						mailBox.saveMessagec2(savedMessage);
 						viewNewMessagec2();
 						break;
+					// Case 2: Tells the user that they deleted the message from their inbox and attempts to get the next newest message
 					case 2:
 						System.out.println("\sMessage deleted!\n");
 						viewNewMessagec2();
@@ -135,6 +149,8 @@ public class theMessageQueue {
 			}
 		}
 	}
+	// Allows the caller accociated with these saved messages to view them if there are any, and asks if they want to delete that message
+	// or move on to the other saved messages
 	public static void viewSavedMessagesc2() {
 		if(mailBox.savedMessageQueuec2.isEmpty()) {
 			System.out.println("\sYou do not have any saved messages!\n\n\sTaking you back to previous menu.\n");
@@ -151,11 +167,13 @@ public class theMessageQueue {
 				if(!c.equalsIgnoreCase("h")) {
 					int choose = Integer.valueOf(c);
 					switch(choose){
+						// Case 1: Since this is the last message in the list it takes the caller to the previous menu
 						case 1:
 							System.out.println("\sYou do not have any more saved messages!\n\n\sTaking you back to previous menu.\n");
 							currentc2 = 0;
 							theMailbox.mailboxMenu();
 							break;
+						// Case 2: Deletes the last messgage and takes the caller to the previous menu
 						case 2:
 							System.out.println("\sMessage deleted!\n");
 							mailBox.deleteSavedMessagec2();
@@ -178,9 +196,11 @@ public class theMessageQueue {
 				if(!c.equalsIgnoreCase("h")) {
 					int choose = Integer.valueOf(c);
 					switch(choose){
+						// Case 1: Goes to the next saved message
 						case 1:
 							viewSavedMessagesc2();
 							break;
+						// Case 2: Deletes that saved message
 						case 2:
 							System.out.println("Message deleted!\n");
 							int q2 = currentc2; 
