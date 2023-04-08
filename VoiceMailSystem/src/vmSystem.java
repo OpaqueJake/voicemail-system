@@ -10,6 +10,7 @@ public class vmSystem {
 	private static Caller receiver;
 	public static int counter;
 	
+	// Sets up the connection and has caller A call caller B
 	public vmSystem(Caller a, Caller b) {
 		counter = 0;
 		setCurrentCaller(a);
@@ -37,6 +38,7 @@ public class vmSystem {
 		Callers[1] = receiver;
 	}
 
+	// Starts the phone call for the current caller and allows for the callers to access their own voicemail or call the other caller
 	public static void callsPhone(Caller a) {
 		System.out.println("\s " + ((Caller) Callers[0]).getOwnerName()+ " has reached the Voicemail System Menu!");
 		System.out.println("\t -Enter 1 to call someones Mailbox");
@@ -52,6 +54,7 @@ public class vmSystem {
 		} else {
 			int check = Integer.valueOf(s);
 			switch(check) {
+			// Case 1: Calls the other caller and asks for their extention, and allows for you to input your message to them
 			case 1:
 				System.out.println("\sWhat is the Extention # for the Mailbox you wish to leave a message for?");
 				String extention = input.nextLine();
@@ -62,6 +65,7 @@ public class vmSystem {
 					for(int i = 1; i > 0; ++i) {
 						String z = input.nextLine();
 						if(!z.equalsIgnoreCase("h")) {
+							// Syncs the current user to the correct caller so the messages go to the right person
 							if(vmSystem.User[0] == vmSystem.Callers[0]) {
 								mailBox.addMessagec2(z);
 								counter = 0;
@@ -78,6 +82,7 @@ public class vmSystem {
 					vmSystem.endsCall();
 				}
 				break;
+			// Case 2: Brings you to your mailbox to check messages or change any personal information
 			case 2:
 				System.out.println("\sRouting to your Mailbox...\n");
 				theMailbox.login();
@@ -87,6 +92,7 @@ public class vmSystem {
 		return;
 	}
 
+	// Accounts for when a caller ends their call and swaps to the next caller, if there is one
 	public static void endsCall() {
 		if(counter == 0) {
 			++counter; 
@@ -100,6 +106,7 @@ public class vmSystem {
 		}
 	}
 	
+	// Checks to see if the extention that the caller input is the same as the receivers extention, and if it is, it brings you to the receivers voicemail
 	public static void isExt(int ext) {
 		if (ext == Callers[1].getExt()) {
 			System.out.println("\sYou entered " + Callers[1].getOwnerName() + "'s extention!\n");
